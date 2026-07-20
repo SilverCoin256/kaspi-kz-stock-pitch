@@ -1,15 +1,11 @@
 """Generate every chart and printed table used in the Kaspi.kz stock pitch deck."""
 
-import os
-
 from data.financials import NET_INCOME_METRICS, CASH_FLOW_METRICS, TRADING_SNAPSHOT
 from charts import revenue_growth, competitive_analysis
 from models import capital_flywheel, monte_carlo, valuation
 
 
 def main():
-    os.makedirs("output", exist_ok=True)
-
     print("=== Investment Recommendation ===")
     print(TRADING_SNAPSHOT)
 

@@ -1,11 +1,19 @@
 """Revenue Growth slide: Kaspi.kz Total Revenue and Net Income, 2020-2024 (KZT Bln)."""
 
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
 import matplotlib.pyplot as plt
 
 from data.financials import REVENUE_GROWTH
 
 
-def plot(save_path="output/revenue_growth.png"):
+def plot(save_path=None):
+    save_path = Path(save_path) if save_path else ROOT / "output" / "revenue_growth.png"
+    save_path.parent.mkdir(parents=True, exist_ok=True)
     df = REVENUE_GROWTH
 
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -21,7 +29,7 @@ def plot(save_path="output/revenue_growth.png"):
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    return save_path
+    return str(save_path)
 
 
 if __name__ == "__main__":

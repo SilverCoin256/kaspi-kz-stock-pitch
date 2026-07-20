@@ -6,18 +6,26 @@ data in data/financials.py -- if these stop tying out, the input data is
 probably wrong, not the arithmetic).
 """
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from data.financials import (
     TRADING_SNAPSHOT,
     VALUATION_SCENARIOS,
     COMPS_MULTIPLES,
     COMPETITIVE_ANALYSIS,
     RISK_STRESS,
+    OPERATING_METRICS,
 )
 
 
 def price_target_upside(current=None, target=None):
-    current = current or TRADING_SNAPSHOT["current_price"]
-    target = target or TRADING_SNAPSHOT["price_target"]
+    if current is None:
+        current = TRADING_SNAPSHOT["current_price"]
+    if target is None:
+        target = TRADING_SNAPSHOT["price_target"]
     return target / current - 1
 
 
@@ -49,8 +57,7 @@ def roe_decay_upside():
 
 
 def npl_sensitivity_ratio():
-    npl_current = 2.8  # data.financials.OPERATING_METRICS["npl_ratio_pct"]
-    delta_npl = RISK_STRESS["npl_stressed_pct"] - npl_current
+    delta_npl = RISK_STRESS["npl_stressed_pct"] - OPERATING_METRICS["npl_ratio_pct"]
     return RISK_STRESS["npl_margin_impact_pct"] / delta_npl
 
 

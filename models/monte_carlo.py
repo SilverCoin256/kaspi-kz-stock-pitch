@@ -19,6 +19,11 @@ rather than silently forcing a fit.
 """
 
 import math
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -115,7 +120,9 @@ def empirical_stats(paths):
     }
 
 
-def plot_fan_chart(paths, save_path="output/monte_carlo.png"):
+def plot_fan_chart(paths, save_path=None):
+    save_path = Path(save_path) if save_path else ROOT / "output" / "monte_carlo.png"
+    save_path.parent.mkdir(parents=True, exist_ok=True)
     years = np.arange(paths.shape[1])
     p10 = np.percentile(paths, 10, axis=0)
     p50 = np.percentile(paths, 50, axis=0)
@@ -142,10 +149,10 @@ def plot_fan_chart(paths, save_path="output/monte_carlo.png"):
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    return save_path
+    return str(save_path)
 
 
-def run(targets=MONTE_CARLO_TARGETS, save_path="output/monte_carlo.png"):
+def run(targets=MONTE_CARLO_TARGETS, save_path=None):
     cal = calibrate(targets)
     mu, sigma, horizon = cal["mu"], cal["sigma"], cal["horizon"]
 
