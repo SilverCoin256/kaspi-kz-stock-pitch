@@ -1,12 +1,8 @@
-# Kaspi.kz Stock Pitch — Ascend Berkeley Stock Pitch Competition 2025
+# Kaspi.kz stock pitch
 
-Rebuilt analysis code behind *"Kaspi.kz: A Compelling Case for Fintech Leadership"*
-(Prajwal Doranala & Shaurya Santosh Gupta). The original code was lost; this
-repo reconstructs it from the submitted deck — historical financials, comps,
-the Monte Carlo simulation, and the capital-flywheel reinvestment model — so
-every chart and figure in the deck can be regenerated and re-verified.
+This repository reconstructs the analysis for Prajwal Doranala and Shaurya Santosh Gupta’s entry in the 2025 Ascend Berkeley Stock Pitch Competition, *Kaspi.kz: A Compelling Case for Fintech Leadership*. The submitted slides served as the source after the original code was lost.
 
-**Recommendation: Strong Buy** · Current price $76.50 · 12-18mo target $140 (+83%)
+The 2025 pitch rated Kaspi.kz Strong Buy at a reference price of $76.50, with a $140 target over 12–18 months (+83%).
 
 ## Run it
 
